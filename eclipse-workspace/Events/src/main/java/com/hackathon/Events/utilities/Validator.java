@@ -2,6 +2,7 @@ package com.hackathon.Events.utilities;
 
 import java.util.regex.Pattern;
 
+import com.hackathon.Events.forms.BlogForm;
 import com.hackathon.Events.forms.LoginForm;
 
 public class Validator {
@@ -26,6 +27,16 @@ public class Validator {
 	
 	public static boolean validEmail(String s) {
 		return Pattern.compile(emailRegex).matcher(s).matches();
+	}
+	
+	public static boolean validate(BlogForm b) {
+		if(b.getName() == null || !b.getName().matches("[A-Za-z0-9]+")) {
+			msg = "invalid name";
+		}
+		else {
+			return true;
+		}
+		return false;
 	}
 	
 }

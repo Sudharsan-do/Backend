@@ -11,7 +11,9 @@ public class CustomInterceptor implements HandlerInterceptor {
 	
 	private final String[] arr = {
 			"/loginPage",
-			"/logout"
+			"/logout",
+			"/timeout",
+			"/login"
 	};
 
 	@Override
@@ -19,7 +21,9 @@ public class CustomInterceptor implements HandlerInterceptor {
 			throws Exception {
 		try {
 			if(request.getSession(false)==null && !omitSession(request.getRequestURI())) {
-				response.sendRedirect("/sessionTimeout");
+				String url = request.getScheme() + "://" + request.getServerName() +  
+			             ":" + request.getServerPort()+"/timeout";
+				response.sendRedirect(url);
 				return false;
 			}
 		}

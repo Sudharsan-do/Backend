@@ -1,11 +1,16 @@
 package com.hackathon.Events.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table
 public class UserDetails {
 	
 	@Id
@@ -13,7 +18,15 @@ public class UserDetails {
 	private Long userId;
 	private String email;
 	private String hashedPass;
+	@OneToMany(mappedBy = "userDetails")
+	private Set<Blog> blogs;
 	
+	public Set<Blog> getBlogs() {
+		return blogs;
+	}
+	public void setBlogs(Set<Blog> blogs) {
+		this.blogs = blogs;
+	}
 	public String getEmail() {
 		return email;
 	}
